@@ -1,0 +1,1530 @@
+/* =======================================
+   1. DEFINICIÓN DE FUENTES (ACTIV GROTESK)
+   ======================================= */
+
+/* Aktiv Grotesk Regular */
+@font-face {
+    font-family: 'aktiv-grotesk';
+    src: url('fuentes/aktiv-grotesk/AktivGrotesk-Regular.ttf') format('truetype');
+    font-weight: 400; /* Regular */
+    font-style: normal;
+    font-display: swap; 
+}
+
+/* Aktiv Grotesk Bold */
+@font-face {
+    font-family: 'aktiv-grotesk';
+    src: url('fuentes/aktiv-grotesk/AktivGrotesk-Bold.ttf') format('truetype');
+    font-weight: 700; /* Bold */
+    font-style: normal;
+    font-display: swap;
+}
+
+
+
+/* =======================================
+   2. DEFINICIÓN DE FUENTES (ROBOTO MONO)
+   ======================================= */
+
+/* Roboto Mono Regular */
+@font-face {
+    font-family: 'roboto-mono';
+    src: url('fuentes/roboto-mono/RobotoMono-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Roboto Mono Light (Ejemplo de otra variación) */
+@font-face {
+    font-family: 'Roboto Mono';
+    src: url('fuentes/roboto-mono/RobotoMono-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+
+/* =======================================
+   3. VARIABLES Y RESET BÁSICO
+   ======================================= */
+
+:root {
+    --color-rojo: #e83f15;
+    --color-azul: #2852d2;
+    --color-amarillo: #ebaf00;
+    --color-fondo: #f5f5f5;
+    --color-texto: #242424;
+    --font-primaria: 'aktiv-grotesk', sans-serif;
+    --font-secundaria: 'roboto-mono', monospace;
+}
+
+
+body{
+  margin: 0;
+    font-size: 16px; 
+    font-family: var(--font-secundaria);
+    color: var(--color-texto);
+    background-color: var(--color-fondo);
+}
+
+
+/* =======================================
+   4. HEADER (Barra de Navegación Fija)
+   ======================================= */
+
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5%;
+    background-color: rgba(36, 36, 36, 0.95);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box; 
+}
+
+
+.header-logo a {
+    text-decoration: none;
+    padding: 20;
+}
+
+.nav-logo {
+    /* Estilo del logo estático en la barra de navegación */
+    height: 40px; 
+    width: auto;
+    transition: transform 0.3s;
+}
+
+/* Efecto al pasar el mouse */
+.nav-logo:hover {
+    transform: scale(1.05);
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    color: var(--color-fondo);
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 5px 0;
+    transition: color 0.3s;
+    font-weight: 400;
+}
+
+.nav-links a:hover {
+    color: var(--color-rojo);
+}
+
+.auth-link a {
+    background-color: var(--color-azul);
+    color: white;
+    padding: 8px 15px;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: background-color 0.3s;
+    font-family: var(--font-secundaria);
+    font-weight: 700;
+}
+
+
+.auth-link a:hover {
+    background-color: var(--color-rojo);
+}
+
+/* Normalización básica para que todo se mida igual */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
+/* ======== DROPDOWN MENU (Artistas) ======== */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  background: none;
+  border: none;
+  color: var(--color-fondo);
+  font-family: var(--font-secundaria);
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 5px 0;
+  transition: color 0.3s;
+}
+
+.dropbtn:hover {
+  color: var(--color-rojo);
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: rgba(36, 36, 36, 0.97);
+  min-width: 200px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  flex-direction: column;
+  padding: 10px 0;
+}
+
+.dropdown-content a {
+  color: var(--color-fondo);
+  padding: 10px 20px;
+  text-decoration: none;
+  display: block;
+  font-family: var(--font-secundaria);
+  font-size: 0.95rem;
+  transition: background 0.3s, color 0.3s;
+}
+
+.dropdown-content a:hover {
+  background-color: var(--color-rojo);
+  color: white;
+}
+
+/* Mostrar el menú al hacer hover */
+.dropdown:hover .dropdown-content {
+  display: flex;
+}
+
+
+
+.user-greeting {
+    color: var(--color-fondo); 
+    margin-right: 5px; 
+    font-family: var(--font-secundaria);
+    font-size: 0.95rem; 
+}
+
+.search-form {
+   display: flex;
+   align-items: center;
+   margin-right: 15px; 
+}
+
+.search-form input[type="search"] {
+    background-color: #f5f5f5; 
+    padding: 6px 12px; 
+    border: 1px solid var(--color-texto); 
+    border-right: none; 
+    border-radius: 3px 0 0 3px;
+    font-size: 0.9rem; 
+    outline: none;
+    width: 180px; 
+    color: var(--color-texto);
+    font-family: var(--font-secundaria);
+    transition: border-color 0.2s ease; 
+    height: 32px; 
+}
+
+.search-form input[type="search"]::placeholder {
+    color: #888; /* Un color de placeholder que no sea demasiado oscuro */
+    font-size: 0.9rem;
+}
+
+.search-form input[type="search"]:focus {
+    border-color: var(--color-rojo); /* El rojo Bauhaus al enfocar */
+}
+
+.search-form .search-button {
+    padding: 6px 10px; /* Reducimos el padding */
+    border: 1px solid var(--color-rojo); /* Borde del botón rojo */
+    background-color: var(--color-rojo); /* Fondo del botón rojo */
+    color: #f5f5f5; 
+    border-radius: 0 3px 3px 0; /* Bordes sutilmente cuadrados */
+    cursor: pointer;
+    font-size: 0.9rem; /* Letra del botón más pequeña */
+    line-height: 1; /* Alinea el texto/ícono */
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    height: 32px; /* Misma altura que el input */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-form .search-button:hover {
+    background-color: #ebaf00; 
+    border-color: #ebaf00;
+}
+
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .dropdown-content {
+    position: static;
+    box-shadow: none;
+    background-color: transparent;
+    padding: 0;
+  }
+
+  .dropdown-content a {
+    padding: 8px 0;
+    color: var(--color-fondo);
+  }
+
+  .dropdown-content a:hover {
+    background-color: transparent;
+    color: var(--color-rojo);
+  }
+}
+
+
+
+
+/* =======================================
+   5. SECCIÓN DE INTRODUCCIÓN (ABOUT)
+   ======================================= */
+
+.main-content {
+/* Define el contenedor principal del contenido scrolleable */
+    background-color: var(--color-fondo);
+    padding: 100px 5% 0 5%;
+    min-height: 100vh; 
+    display: block; 
+}
+
+.about-section {
+    max-width: 1400px; 
+    margin: 0 auto 160px auto;
+    text-align: left; 
+    padding: 0;
+}
+
+.section-subtitle {
+/* "SOBRE LA BAUHAUS" */
+    font-family: var(--font-primaria); /* Aktiv Grotesk */
+    font-weight: 400;
+    font-size: 0.9rem;
+    color: var(--color-texto);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    opacity: 0.6;
+}
+
+.section-title {
+    font-family: var(--font-primaria); 
+    font-weight: 700; 
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.2;
+    margin-top: 0;
+    margin-bottom: 30px;
+    color: var(--color-texto);
+}
+
+.section-title .highlight {
+/* Resaltar la palabra "archivo vivo" con el color amarillo de Bauhaus */
+    color: var(--color-amarillo);
+    font-weight: 700;
+}
+
+.section-body-text {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)); /* tres columnas iguales */
+  gap: 40px;
+  max-width: 1400px;
+  margin: 30px auto 0;   /* centrado horizontal y separación arriba */
+  align-items: start;    /* alinea los 3 bloques en la parte superior */
+}
+
+/* estilo de los párrafos dentro del grid */
+.section-body-text p {
+  margin: 0;
+  font-family: var(--font-secundaria);
+  font-weight: 400;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--color-texto);
+}
+
+/* Alineación por columna */
+.section-body-text .col-izq { text-align: left; }
+.section-body-text .col-centro { text-align: left; }
+.section-body-text .col-der { text-align: left; }
+
+/* Responsivo */
+@media (max-width: 900px) {
+  .section-body-text { grid-template-columns: 1fr; gap: 20px; }
+  .section-body-text p { text-align: left; }
+}
+
+
+/* =======================================
+   6. SECCIÓN REFERENTES (Artistas en el Home)
+   ======================================= */
+
+.artistas-section {
+    max-width: 1400px;
+    margin: 0px auto 80px auto; 
+    padding: 0;
+}
+
+.section-title-artistas {
+/* Título de la sección "Referentes" */
+    font-family: var(--font-primaria); 
+    font-weight: 700;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color:#e83f15;
+    text-align: left; 
+    margin-bottom: 40px;
+}
+
+.artistas-grid {
+/* Contenedor de la cuadrícula (para las 5 imágenes) */
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); 
+    gap: 20px;
+
+/* Responsivo */
+    @media (max-width: 900px) {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+}
+
+.artist-item {
+    text-align: center;
+}
+
+.artista-card {
+    position: relative;
+    overflow: hidden; /* Para el efecto de zoom sin salirse del marco */
+    cursor: pointer;
+    background-color: #e0e0e0; /* Color de fondo si la imagen no carga */
+    aspect-ratio: 2 / 3; /* Proporción vertical */
+    margin-bottom: 0;
+}
+
+.artista-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+}
+
+/* Efecto Hover: Imagen se agranda y se oscurece */
+.artista-card:hover img {
+    transform: scale(1.05);
+    opacity: 0.8;
+}
+
+/* --- OVERLAY: "Leer Más" --- */
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px; 
+    background-color: rgba(36, 36, 36, 0.85); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+
+    transform: translateY(100%); 
+    opacity: 0;
+    transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+}
+
+/* Efecto Hover: Mostrar el overlay */
+.artista-card:hover .overlay {
+    transform: translateY(0); /* Deslizar hacia arriba */
+    opacity: 1;
+}
+
+.read-more-link {
+/* Estilo del texto "Leer Más" */
+    font-family: var(--font-secundaria); 
+    color: #e0e0e0;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 10px 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+}
+
+.read-more-link:hover {
+    color: var(--color-amarillo); /* Resaltar con color al pasar el cursor */
+}
+
+.artist-name {
+    font-family: var(--font-secundaria); 
+    font-weight: 400; 
+    font-size: 1rem;
+    color: var(--color-texto);
+    margin-top: 10px; 
+    margin-bottom: 20;
+
+}
+
+
+
+/* =======================================
+   7. ANIMACIÓN DEL HOME
+   ======================================= */
+
+.banner {
+  height: 100vh;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('img/bauhaus-dessau-1.jpg');
+  background-size: cover;
+  background-position: center;
+  animation: bgZoomIn 4s ease-in-out 1 forwards;
+  z-index: -1;
+  pointer-events: none;
+}
+.banner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('img/corona3.png');
+  background-size: cover;
+  background-position: top;
+  transform: scale(2);
+  animation: bgZoomOut 4s ease-in-out 1 forwards;
+  z-index: -1;
+  pointer-events: none;
+}
+@keyframes bgZoomIn {
+  from {
+    transform: scale(1.2);
+  } to {
+    transform: scale(1);
+  }
+}
+@keyframes bgZoomOut {
+  from {
+    transform: scale(1);
+  } to {
+    transform: scale(2);
+  }
+}
+
+svg path,
+svg circle {
+  fill: transparent;
+  stroke: #242424;
+  stroke-width: 3;
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+  animation: textAnimation 4s ease-in-out 1 forwards;
+}
+@keyframes textAnimation {
+  0% {
+    fill: transparent;
+    stroke-dashoffset: 2000;
+  }
+  80% {
+    fill: transparent;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    stroke-opacity: 0;
+  }
+}
+
+
+/* =======================================
+   8. FOOTER
+   ======================================= */
+
+.footer {
+  background-color: #f5f5f5;       
+  border-top: 2px solid #242424;     
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-family: var(--font-secundaria);
+}
+
+.footer .social-icons {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.footer .social-icons a {
+  color: #2852d2;
+  font-size: 1.5rem;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.footer .social-icons a:hover {
+  transform: scale(1.2);
+  color: #e83f15;  
+}
+
+.footer .legales {
+  font-size: 0.9rem;
+  color: #242424;
+  max-width: 800px;
+  line-height: 1.4;
+}
+
+/* Responsivo */
+@media (min-width: 768px) {
+  .footer {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+
+  .footer .social-icons {
+    margin-bottom: 0;
+  }
+}
+
+
+/* =======================================
+   9. HISTORIA / TIMELINE
+   ======================================= */
+
+
+.historia-section {
+  position: relative;
+  overflow: hidden;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 120px 20px; 
+  min-height: 1000px;  /* para scroll */
+}
+
+.historia-title {
+  font-family: var(--font-primaria);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+.historia-item {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.historia-bloque {
+  margin-bottom: 80px;  
+}
+
+.historia-text {
+  max-width: 1400px;
+  margin: 30px auto 0 auto;
+  padding: 0 5%;
+  font-family: var(--font-secundaria);
+  font-weight: 400;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--color-texto);
+  text-align: justify;
+  text-align-last: left;  /* Última línea alineada a la izquierda */
+}
+
+.historia-text p {
+  margin-bottom: 1em;
+}
+
+/* SVG centrados */
+.historia-marker img {
+  max-width: 300px;
+  width: 100%;
+  margin: 0 auto 25px auto;
+  display: block;
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+/* Hover animado */
+.historia-marker img:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+/* Animación suave al aparecer */
+.historia-marker img[data-aos] {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.historia-marker img[data-aos].aos-animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Franja roja */
+.historia-franja {
+  background-color: var(--color-rojo);
+  color: white;
+  font-family: var(--font-primaria);
+  text-transform: uppercase;
+  text-align: center;
+  padding: 12px 5%;
+  margin: 25px auto 50px auto;
+  font-weight: 700;
+  letter-spacing: 1px;
+  max-width: 1400px;
+}
+
+.historia-columnas {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* Dos columnas iguales */
+  gap: 40px;
+  max-width: 1400px;
+  margin: 30px auto 0 auto;
+  padding: 0 5%;
+  text-align: justify;
+  text-align-last: left;
+}
+
+.historia-columnas p {
+  margin: 0 0 1em 0;
+  font-family: var(--font-secundaria);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--color-texto);
+}
+
+
+
+@media (max-width: 900px) {
+  .historia-columnas {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+
+
+/* =======================================
+   10. LOGIN / SIGNUP
+   ======================================= */
+
+/* CONTENEDOR GENERAL */
+.access-main {
+  display: flex;
+  justify-content: center;
+  padding: 80px 20px;
+}
+
+/* GRID LOGIN + REGISTRO */
+.access-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  max-width: 1100px;
+  width: 100%;
+}
+
+/* COLUMNAS */
+.access-col {
+  background: #ffffff;
+  padding: 40px 35px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* TITULOS */
+.access-title {
+  font-family: 'aktiv-grotesk';
+  font-weight: 700;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  color: var(--color-texto);
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+/* FORMULARIO */
+.access-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.access-form label {
+  font-family: 'roboto-mono';
+  font-size: 1rem;
+}
+
+.access-form input {
+  padding: 12px;
+  border: 2px solid var(--color-texto);
+  border-radius: 6px;
+  font-family: 'roboto-mono';
+  font-size: 1rem;
+  background: #fff;
+  outline: none;
+}
+
+.access-form input:focus {
+  border-color: var(--color-azul);
+}
+
+/* BOTONES */
+.access-btn {
+  margin-top: 12px;
+  padding: 12px;
+  background: var(--color-azul);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-family: 'roboto-mono';
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.access-btn:hover {
+  background: var(--color-rojo);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .access-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+
+
+
+
+/* =======================================
+   11. GALERÍA
+   ======================================= */
+
+.galeria-section {
+  position: relative;
+  overflow: hidden;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 120px 20px; 
+}
+
+.galeria-section .section-title {
+  text-align: center;
+  font-family: var(--font-primaria);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 60px;
+}
+
+.galeria-section .section-subtitle {
+  text-align: center;
+  margin-bottom: 8px;
+  font-family: var(--font-primaria);
+  font-weight: 400;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+/* SLIDER */
+.slider-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  margin-top: 40px;
+}
+
+.slider-wrapper {
+  display: flex;
+  overflow: hidden;
+  scroll-behavior: smooth;
+  max-width: 1100px;
+}
+
+.slider-wrapper img {
+  cursor: zoom-in;
+  transition: transform 0.3s ease;
+}
+
+.slider-wrapper img:hover {
+  transform: scale(1.02);
+}
+
+.slide {
+  min-width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.slide img {
+  width: 100%;
+  max-height: 600px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+.slide-description {
+  font-family: var(--font-secundaria);
+  font-size: 1rem;
+  color: var(--color-texto);
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* BOTONES */
+.slider-btn {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  padding: 10px 15px;
+  margin: 0 10px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.slider-btn:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.slider-btn.prev {
+  position: absolute;
+  left: 0;
+}
+
+.slider-btn.next {
+  position: absolute;
+  right: 0;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .slide-description {
+    font-size: 0.9rem;
+    padding: 0 10px;
+  }
+}
+
+/* =======================================
+   11 b. MODAL DE IMAGEN
+   ======================================= */
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background: rgba(0, 0, 0, 0.8);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-content {
+  position: relative;
+  max-width: 900px;
+  width: 100%;
+  background: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+  animation: fadeIn 0.4s ease;
+}
+
+.modal-content img {
+  width: 100%;
+  display: block;
+  max-height: 70vh;
+  object-fit: cover;
+}
+
+.modal-info {
+  padding: 20px;
+  font-family: var(--font-secundaria);
+  text-align: center;
+}
+
+.modal-info h2 {
+  font-family: var(--font-primaria);
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+
+.modal-info h3 {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.modal-info p {
+  font-size: 1rem;
+  color: var(--color-texto);
+  line-height: 1.6;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.8rem;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.modal-close:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: scale(0.98);}
+  to {opacity: 1; transform: scale(1);}
+}
+
+
+/* =======================================
+   12. ARTISTAS - PÁGINAS INDIVIDUALES
+   ======================================= */
+
+.artista-section {
+  max-width: 1400px;
+  margin: 0 auto 120px auto;
+  padding-top: 120px;
+}
+
+.artista-title {
+  font-family: var(--font-primaria);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 50px;
+  color: var(--color-texto);
+}
+
+.artista-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: start;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+.artista-img img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+}
+
+.artista-bio {
+  font-family: var(--font-secundaria);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--color-texto);
+  text-align: justify;
+  text-align-last: left;
+}
+
+.artista-bio p {
+  margin-bottom: 1em;
+}
+
+/* Responsivo */
+@media (max-width: 900px) {
+  .artista-content {
+    grid-template-columns: 1fr;
+  }
+
+  .artista-img {
+    text-align: center;
+  }
+
+  .artista-img img {
+    max-width: 80%;
+    margin: 0 auto;
+  }
+}
+
+
+/* Frases destacadas en biografías / textos */
+.highlight-gropius {
+  background-color: var(--color-texto); 
+  color: #f5f5f5;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.highlight-breuer {
+  background-color: var(--color-texto);
+  color: #f5f5f5;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.highlight-brandt {
+  background-color: var(--color-rojo);
+  color: #f5f5f5;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.highlight-moholy {
+  background-color: var(--color-azul);
+  color: #f5f5f5;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.highlight-klee {
+  background-color: var(--color-amarillo);
+  color: #242424;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+/* =======================================
+   13. CONTACTO
+   ======================================= */
+
+.contacto-section {
+  max-width: 1400px;
+  margin: 0 auto 160px auto;
+  padding-top: 120px;
+}
+
+.contacto-section .section-title {
+  font-family: var(--font-primaria);
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 3rem);
+  text-align: center;
+  margin-bottom: 10px;
+  color: var(--color-texto);
+}
+
+.contacto-section .section-subtitle {
+  font-family: var(--font-primaria);
+  font-weight: 400;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 50px;
+  opacity: 0.7;
+}
+
+.contacto-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+.contacto-form label {
+  display: block;
+  font-family: var(--font-primaria);
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  color: var(--color-texto);
+}
+
+.contacto-form input,
+.contacto-form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  font-family: var(--font-secundaria);
+  font-size: 1rem;
+  border: 2px solid var(--color-texto);
+  background: white;
+  color: var(--color-texto);
+  margin-bottom: 15px;
+  border-radius: 4px;
+}
+
+.contacto-form input:focus,
+.contacto-form textarea:focus {
+  outline: none;
+  border-color: var(--color-rojo);
+}
+
+.btn-enviar {
+  background-color: var(--color-azul);
+  color: #f5f5f5;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-family: var(--font-primaria);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-enviar:hover {
+  background-color: var(--color-rojo);
+  color: white;
+}
+
+/* Mapa responsivo */
+.contacto-mapa iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 350px;
+  border: none;
+  border-radius: 8px;
+}
+
+/* Responsivo */
+@media (max-width: 900px) {
+  .contacto-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+/* =======================================
+   14. MENSAJES DE CONTACTO (Respuesta)
+   ======================================= */
+
+.mensaje-contacto-section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 120px 20px 80px 20px;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mensaje-contacto-box {
+    background: #ffffff;
+    padding: 50px 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    text-align: center;
+    width: 100%;
+}
+
+.mensaje-contacto-box h3 {
+    font-family: var(--font-primaria);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.mensaje-contacto-box.success h3 {
+    color: var(--color-azul);
+}
+
+.mensaje-contacto-box.error h3 {
+    color: var(--color-rojo);
+}
+
+.mensaje-contacto-box p {
+    font-family: var(--font-secundaria);
+    font-size: 1.1rem;
+    color: var(--color-texto);
+    margin-bottom: 30px;
+    line-height: 1.7;
+}
+
+.btn-volver-contacto {
+    display: inline-block;
+    padding: 12px 30px;
+    background: var(--color-azul);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-family: var(--font-secundaria);
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.btn-volver-contacto:hover {
+    background: var(--color-rojo);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Animación de entrada */
+.mensaje-contacto-box {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+    .mensaje-contacto-box {
+        padding: 35px 25px;
+    }
+    
+    .mensaje-contacto-box h3 {
+        font-size: 1.6rem;
+    }
+    
+    .mensaje-contacto-box p {
+        font-size: 1rem;
+    }
+}
+
+/* =======================================
+   15. BUSCADOR
+   ======================================= */
+
+/* Contenedor principal de resultados */
+#search-results {
+    max-width: 1400px; 
+    margin: 0 auto 80px auto;
+    padding: 0 5%;
+}
+
+/* Título principal de búsqueda */
+.search-page-title {
+    font-family: var(--font-primaria); 
+    font-weight: 700; 
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.2;
+    margin-top: 0;
+    margin-bottom: 30px;
+    color: var(--color-texto);
+    text-align: center;
+    padding-top: 120px;
+}
+
+/* Contenedor de resultados individuales */
+.search-results-container {
+    display: flex;
+    flex-direction: column; 
+    gap: 30px;
+}
+
+/* Encabezado de sección de resultados */
+.section-header h2 {
+    font-family: var(--font-secundaria);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--color-texto);
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--color-rojo);
+    padding-bottom: 5px;
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+}
+
+
+
+/* Cada resultado individual de artista */
+.artista-search-item {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 35px; 
+    padding: 20px 0;
+    border-bottom: 1px solid #ccc; 
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+.artista-search-item:hover {
+    background-color: rgba(232, 63, 21, 0.03);
+}
+
+.artista-search-item:last-child {
+    border-bottom: none; 
+}
+
+/* Imagen del artista en resultados */
+.artista-search-img {
+    aspect-ratio: 2 / 3; 
+    overflow: hidden;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.artista-search-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s;
+}
+
+.artista-search-item:hover .artista-search-img img {
+    transform: scale(1.05);
+}
+
+/* Título del resultado */
+.search-result-title {
+    font-family: var(--font-primaria);
+    font-weight: 700;
+    font-size: 1.8rem;
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.search-result-title a {
+    color: var(--color-azul);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.search-result-title a:hover {
+    color: var(--color-rojo);
+}
+
+/* Área de especialización */
+.search-result-area {
+    font-family: var(--font-secundaria);
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+/* Snippet de biografía */
+.search-result-snippet {
+    font-family: var(--font-secundaria);
+    font-weight: 400; 
+    font-size: 1.1rem; 
+    line-height: 1.8; 
+    margin-bottom: 15px;
+    color: var(--color-texto);
+}
+
+/* Botón "Ver más" */
+.btn-ver-mas {
+    display: inline-block;
+    background-color: var(--color-rojo);
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-family: var(--font-secundaria);
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+}
+
+.btn-ver-mas:hover {
+    background-color: var(--color-amarillo);
+    color: var(--color-texto);
+    transform: translateY(-1px);
+}
+
+/* Mensajes de estado */
+.no-results, .no-query {
+    font-family: var(--font-secundaria);
+    font-size: 1.2rem;
+    color: var(--color-texto);
+    text-align: center;
+    padding: 40px;
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    margin-top: 30px;
+}
+
+/* Contador de resultados */
+.count-message {
+    font-family: var(--font-secundaria);
+    font-size: 1rem;
+    color: #888;
+    text-align: right;
+    margin-top: 20px;
+    padding: 0 10px; 
+}
+
+/* Responsivo para buscador */
+@media (max-width: 600px) {
+    .page-title-header {
+        padding-top: 100px;
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+    }
+    
+    .artista-search-item {
+        grid-template-columns: 1fr; 
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .artista-search-img {
+        max-width: 150px; 
+        margin: 0 auto;
+    }
+
+    .artista-search-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .search-result-title {
+        font-size: 1.5rem;
+    }
+    
+    .search-result-snippet {
+        font-size: 1rem;
+    }
+
+    .btn-ver-mas {
+        width: 100%; 
+        text-align: center;
+    }
+}
